@@ -1,0 +1,29 @@
+plugins {
+    id 'base'
+}
+
+task restoreDotnet(type: Exec) {
+    description = "Restore dependencies"
+    commandLine 'dotnet', 'restore', 'MyWPFApp.sln'
+}
+
+task buildDotnet(type: Exec) {
+    description = "Build the WPF App and test project only"
+    commandLine 'dotnet', 'build', 'MyWPFApp/MyWPFApp.csproj', '--configuration', 'Debug'
+}
+
+task testDotnet(type: Exec) {
+    description = "Run NUnit Tests"
+    commandLine 'dotnet', 'test', 'MyWpfApp.Tests/MyWpfApp.Tests.csproj'
+}
+
+
+
+
+
+
+// Set order
+buildDotnet.dependsOn restoreDotnet
+testDotnet.dependsOn buildDotnet
+
+defaultTasks 'restoreDotnet', 'buildDotnet', 'testDotnet'
