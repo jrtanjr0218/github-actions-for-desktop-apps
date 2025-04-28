@@ -17,13 +17,14 @@ task testDotnet(type: Exec) {
     commandLine 'dotnet', 'test', 'MyWpfApp.Tests/MyWpfApp.Tests.csproj'
 }
 
-
-
-
-
+task publishDotnet(type: Exec) {
+    description = "Publish WPF App"
+    commandLine 'dotnet', 'publish', 'MyWPFApp/MyWPFApp.csproj', '--configuration', 'Release', '-o', 'publish'
+}
 
 // Set order
 buildDotnet.dependsOn restoreDotnet
 testDotnet.dependsOn buildDotnet
+publishDotnet.dependsOn testDotnet
 
-defaultTasks 'restoreDotnet', 'buildDotnet', 'testDotnet'
+defaultTasks 'restoreDotnet', 'buildDotnet', 'testDotnet', 'publishDotnet'
