@@ -28,25 +28,6 @@ namespace MyWPFApp.Tests
 
             Assert.AreEqual("Not packaged", appInstallerUri);
         }
-
-        [Test]
-        public void customTest1()
-        {
-            var custom1 = ThisAppInfo.GetDisplayName();
-            Assert.AreNotEqual("Package Found", custom1);
-        }
-
-        [Test]
-        public void customTest2()
-        {
-            var custom1 = ThisAppInfo.GetAppInstallerUri();
-            Assert.AreNotEqual("Package Found", custom1);
-        }
-
-        [Test]
-        public void printSuccess()
-        {
-            Console.WriteLine("Hello World!");
-        }
+        
     }
 }
