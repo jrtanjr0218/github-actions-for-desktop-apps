@@ -28,5 +28,6 @@ namespace MyWPFApp.Tests
 
             Assert.AreEqual("Not packaged", appInstallerUri);
         }
+        
     }
 }

@@ -12,10 +12,10 @@ task buildDotnet(type: Exec) {
     commandLine 'dotnet', 'build', 'MyWPFApp/MyWPFApp.csproj', '--configuration', 'Debug'
 }
 
-
-
-
-
+task testDotnet(type: Exec) {
+    description = "Run NUnit Tests"
+    commandLine 'dotnet', 'test', 'MyWpfApp.Tests/MyWpfApp.Tests.csproj'
+}
 
 
 
@@ -24,6 +24,6 @@ task buildDotnet(type: Exec) {
 
 // Set order
 buildDotnet.dependsOn restoreDotnet
+testDotnet.dependsOn buildDotnet
 
-
-defaultTasks 'restoreDotnet', 'buildDotnet'
+defaultTasks 'restoreDotnet', 'buildDotnet', 'testDotnet'
