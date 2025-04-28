@@ -14,27 +14,27 @@ pipeline {
         }
         stage('Build WPF App') {
             steps {
-                sh 'gradle buildDotnet'
+                bat 'gradle buildDotnet'
             }
         }
         stage('Execute Unit Tests') {
             steps {
-                sh 'gradle testDotnet'
+                bat 'gradle testDotnet'
             }
         }
         stage('Publish WPF App') {
             steps {
-                sh 'gradle publishDotnet'
+                bat 'gradle publishDotnet'
             }
         }
         stage('Build Docker Image') {
             steps {
-                sh 'docker build -t mywpfapp .'
+                bat 'docker build -t mywpfapp .'
             }
         }
         stage('Run Docker Image') {
             steps {
-                sh 'docker run --rm mywpfapp'
+                bat 'docker run --rm mywpfapp'
             }
         }
     }
